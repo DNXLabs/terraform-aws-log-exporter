@@ -13,20 +13,13 @@ Deploys a lambda that:
     Create an export task to S3_BUCKET defined, and
     Save the current timestamp in an SSM parameter.
 
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| cloudwatch\_logs\_export\_bucket | Bucket to export logs | `string` | `""` | no |
-
-## Outputs
-
-No output.
+<!--- BEGIN_TF_DOCS --->
+<!--- END_TF_DOCS --->
 
 ## Authors
 
-Module managed by [Allan Denot](https://github.com/adenot).
+Module managed by [DNX Solutions](https://github.com/DNXLabs).
 
 ## License
 
-Apache 2 Licensed. See LICENSE for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/DNXLabs/terraform-aws-log-exporter/blob/master/LICENSE) for full details.
