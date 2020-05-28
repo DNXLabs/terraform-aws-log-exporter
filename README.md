@@ -14,6 +14,30 @@ Deploys a lambda that:
     Save the current timestamp in an SSM parameter.
 
 <!--- BEGIN_TF_DOCS --->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.20 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| archive | n/a |
+| aws | n/a |
+| random | n/a |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| cloudwatch\_logs\_export\_bucket | Bucket to export logs | `string` | `""` | no |
+
+## Outputs
+
+No output.
+
 <!--- END_TF_DOCS --->
 
 ## Authors
