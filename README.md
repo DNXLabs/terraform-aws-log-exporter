@@ -14,6 +14,7 @@ Deploys a lambda that:
     Save the current timestamp in an SSM parameter.
 
 <!--- BEGIN_TF_DOCS --->
+
 ## Requirements
 
 | Name | Version |
