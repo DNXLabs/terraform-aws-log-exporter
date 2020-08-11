@@ -2,8 +2,7 @@
 
 terraform-aws-log-exporter creates a lambda function that :
 
-    - Export on the AWS account and region its deployed, every 4 hours,For each log group,
-    If it has the tag ExportToS3=true, and The last export was more than 24 hours ago creates an export task to the S3_BUCKET defined, and Save the current timestamp in an SSM parameter.
+    - Export on the AWS account and region its deployed, every 4 hours,For each log group If it has the tag ExportToS3=true, and The last export was more than 24 hours ago creates an export task to the S3_BUCKET defined, and Save the current timestamp in an SSM parameter.
 
 This module creates:
  - A lambda function
@@ -12,7 +11,7 @@ This module creates:
 
  More Information: https://dnxlabs.slab.com/public/9y24trqv
 
- 
+
 [![Lint Status](https://github.com/DNXLabs/terraform-aws-log-exporter/workflows/Lint/badge.svg)](https://github.com/DNXLabs/terraform-aws-log-exporter/actions)
 [![LICENSE](https://img.shields.io/github/license/DNXLabs/terraform-aws-log-exporter)](https://github.com/DNXLabs/terraform-aws-log-exporter/blob/master/LICENSE)
 
