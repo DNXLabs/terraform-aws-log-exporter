@@ -48,27 +48,33 @@ def lambda_handler(event, context):
             print("    Skipped until 24hrs from last export is completed")
             continue
         
-        try:
-            response = logs.create_export_task(
-                logGroupName=log_group_name,
-                fromTime=int(ssm_value),
-                to=export_to_time,
-                destination=os.environ['S3_BUCKET'],
-                destinationPrefix=log_group_name.strip("/")
-            )
-            print("    Task created: %s" % response['taskId'])
-            time.sleep(5)
+        max_retries = 10
+        while max_retries > 0:
+            try:
+                response = logs.create_export_task(
+                    logGroupName=log_group_name,
+                    fromTime=int(ssm_value),
+                    to=export_to_time,
+                    destination=os.environ['S3_BUCKET'],
+                    destinationPrefix=log_group_name.strip("/")
+                )
+                print("    Task created: %s" % response['taskId'])
+                ssm_response = ssm.put_parameter(
+                    Name=ssm_parameter_name,
+                    Type="String",
+                    Value=str(export_to_time),
+                    Overwrite=True)
+
+                break
+                
+            except logs.exceptions.LimitExceededException:
+                max_retries = max_retries - 1
+                print("    Need to wait until all tasks are finished (LimitExceededException). Continuing %s additional times" % (max_retries))
+                time.sleep(5)
+                continue
             
-        except logs.exceptions.LimitExceededException:
-            print("    Need to wait until all tasks are finished (LimitExceededException). Continuing later...")
-            return
+            except Exception as e:
+                print("    Error exporting %s: %s" % (log_group_name, getattr(e, 'message', repr(e))))
+                continue
+            
         
-        except Exception as e:
-            print("    Error exporting %s: %s" % (log_group_name, getattr(e, 'message', repr(e))))
-            continue
-        
-        ssm_response = ssm.put_parameter(
-            Name=ssm_parameter_name,
-            Type="String",
-            Value=str(export_to_time),
-            Overwrite=True)
