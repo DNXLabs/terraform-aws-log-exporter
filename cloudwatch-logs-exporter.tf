@@ -90,7 +90,8 @@ resource "aws_lambda_function" "log_exporter" {
 
   environment {
     variables = {
-      S3_BUCKET = var.cloudwatch_logs_export_bucket
+      S3_BUCKET = var.cloudwatch_logs_export_bucket,
+      AWS_ACCOUNT = data.aws_caller_identity.current.account_id
     }
   }
 }
