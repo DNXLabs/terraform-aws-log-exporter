@@ -72,6 +72,24 @@ resource "aws_iam_role_policy" "log_exporter" {
       ],
       "Resource": "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/log-exporter-*",
       "Effect": "Allow"
+    },
+    {
+        "Sid": "AllowCrossAccountObjectAcc",
+        "Effect": "Allow",
+        "Action": [
+            "s3:PutObject",
+            "s3:PutObjectACL"
+        ],
+        "Resource": "arn:aws:s3:::${var.cloudwatch_logs_export_bucket}/*"
+    },
+    {
+        "Sid": "AllowCrossAccountBucketAcc",
+        "Effect": "Allow",
+        "Action": [
+            "s3:PutBucketAcl",
+            "s3:GetBucketAcl"
+        ],
+        "Resource": "arn:aws:s3:::${var.cloudwatch_logs_export_bucket}"
     }
   ]
 }
