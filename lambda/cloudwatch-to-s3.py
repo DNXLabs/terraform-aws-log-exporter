@@ -56,7 +56,7 @@ def lambda_handler(event, context):
                     fromTime=int(ssm_value),
                     to=export_to_time,
                     destination=os.environ['S3_BUCKET'],
-                    destinationPrefix=os.environ['AWS_ACCOUNT'] + log_group_name
+                    destinationPrefix=os.environ['AWS_ACCOUNT'] + '/' + log_group_name.strip('/')
                 )
                 print("    Task created: %s" % response['taskId'])
                 ssm_response = ssm.put_parameter(
@@ -75,6 +75,6 @@ def lambda_handler(event, context):
             
             except Exception as e:
                 print("    Error exporting %s: %s" % (log_group_name, getattr(e, 'message', repr(e))))
-                continue
+                break
             
         
