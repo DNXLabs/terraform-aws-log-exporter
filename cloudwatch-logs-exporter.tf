@@ -1,10 +1,3 @@
-
-data "archive_file" "log_exporter" {
-  type        = "zip"
-  source_file = "${path.module}/lambda/cloudwatch-to-s3.py"
-  output_path = "${path.module}/lambda/tmp/cloudwatch-to-s3.zip"
-}
-
 data "aws_region" "current" {}
 
 data "aws_caller_identity" "current" {}
@@ -94,24 +87,6 @@ resource "aws_iam_role_policy" "log_exporter" {
   ]
 }
 EOF
-}
-
-resource "aws_lambda_function" "log_exporter" {
-  filename         = data.archive_file.log_exporter.output_path
-  function_name    = "log-exporter-${random_string.random.result}"
-  role             = aws_iam_role.log_exporter.arn
-  handler          = "cloudwatch-to-s3.lambda_handler"
-  source_code_hash = data.archive_file.log_exporter.output_base64sha256
-  timeout          = 300
-
-  runtime = "python3.8"
-
-  environment {
-    variables = {
-      S3_BUCKET = var.cloudwatch_logs_export_bucket,
-      AWS_ACCOUNT = data.aws_caller_identity.current.account_id
-    }
-  }
 }
 
 resource "aws_cloudwatch_event_rule" "log_exporter" {
