@@ -23,6 +23,10 @@ resource "aws_lambda_function" "log_exporter" {
 
   runtime = "python3.8"
 
+  dead_letter_config {
+    target_arn = aws_sqs_queue.deadletter_queue.arn
+  }
+
   environment {
     variables = {
       S3_BUCKET   = var.cloudwatch_logs_export_bucket,
