@@ -26,6 +26,7 @@ This module creates:
 |------|---------|
 | archive | n/a |
 | aws | n/a |
+| null | n/a |
 | random | n/a |
 
 ## Inputs
