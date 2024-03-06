@@ -19,14 +19,16 @@ This module creates:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.0 |
+| aws | ~> 4.61.0 |
+| random | >= 3.4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | archive | n/a |
-| aws | n/a |
-| random | n/a |
+| aws | ~> 4.61.0 |
+| random | >= 3.4.0 |
 
 ## Inputs
 

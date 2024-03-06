@@ -13,7 +13,7 @@ resource "random_string" "random" {
   length  = 8
   special = false
   upper   = false
-  number  = false
+  numeric  = false
 }
 
 resource "aws_iam_role" "log_exporter" {
