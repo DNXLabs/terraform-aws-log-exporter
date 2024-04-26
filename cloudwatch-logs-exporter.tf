@@ -104,7 +104,7 @@ resource "aws_lambda_function" "log_exporter" {
   source_code_hash = data.archive_file.log_exporter.output_base64sha256
   timeout          = 300
 
-  runtime = "python3.8"
+  runtime = "python3.12"
 
   environment {
     variables = {
