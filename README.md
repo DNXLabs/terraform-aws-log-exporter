@@ -19,7 +19,7 @@ This module creates:
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.0 |
-| aws | ~> 4.61.0 |
+| aws | >= 4.61.0 |
 | random | >= 3.4.0 |
 
 ## Providers
@@ -27,7 +27,7 @@ This module creates:
 | Name | Version |
 |------|---------|
 | archive | n/a |
-| aws | ~> 4.61.0 |
+| aws | >= 4.61.0 |
 | random | >= 3.4.0 |
 
 ## Inputs
@@ -35,6 +35,7 @@ This module creates:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cloudwatch\_logs\_export\_bucket | Bucket to export logs | `string` | `""` | no |
+| runtime | Runtime version of the lambda function | `string` | `"python3.10"` | no |
 
 ## Outputs
 
