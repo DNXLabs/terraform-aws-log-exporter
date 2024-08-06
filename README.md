@@ -32,10 +32,11 @@ This module creates:
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| cloudwatch\_logs\_export\_bucket | Bucket to export logs | `string` | `""` | no |
-| runtime | Runtime version of the lambda function | `string` | `"python3.10"` | no |
+| Name                             | Description                                            | Type | Default       | Required |
+|----------------------------------|--------------------------------------------------------|------|---------------|:--------:|
+| cloudwatch\_logs\_export\_bucket | Bucket to export logs                                  | `string` | `""`          | no |
+| s3\_prefix                       | s3 Key where to export logs ( default to AWS_ACCOUNT ) | `string` | `null`         | no |
+| runtime                          | Runtime version of the lambda function                 | `string` | `"python3.10"` | no |
 
 ## Outputs
 
